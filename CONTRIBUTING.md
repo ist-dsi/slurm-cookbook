@@ -1,8 +1,8 @@
-# Contributing to the Vault-certificate cookbook
+# Contributing to the Slurm cookbook
 
 ## Quick-contribute
 
-* Create an issue on the Github [issue page](https://github.com/ist-dsi/cookbook-vault-certificate/issues)
+* Create an issue on the Github [issue page](https://github.com/ist-dsi/slurm-cookbook/issues)
 * Create a pull request from the ticket with your changes
 
 We regularly review contributions and will get back to you if we have
