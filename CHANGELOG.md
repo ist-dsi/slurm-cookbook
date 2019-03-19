@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.5.1
+
+### Changed
+
+- apps directory is now slurm directory, making nodes mount the nfs share to the correct path  
+
 ## 0.4.1
 
 ### Added

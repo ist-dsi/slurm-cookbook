@@ -13,21 +13,21 @@ node['slurm']['compute']['packages'].each(&method(:package))
 
 # # fstab for controller
 munge_dir = ::File.dirname(node['slurm']['munge']['key'])
-apps_dir = node['slurm']['apps_dir']
+slurm_dir = node['slurm']['slurm_dir']
 homes_dir = node['slurm']['homes_dir']
 control_machine = node['slurm']['control_machine']
 nfs_apps_server = node['slurm']['nfs_apps_server']
 nfs_homes_server = node['slurm']['nfs_homes_server']
 origin = node['slurm']['controller'].nil? ? control_machine : nfs_apps_server
 
-[munge_dir, apps_dir].each do |dir|
-  mount dir.to_s do
+[munge_dir, slurm_dir].each do |dir|
+  mount dir do
     device "#{origin}:#{dir}"
     fstype 'nfs'
     options 'rw,sync,hard,intr'
     dump 0
     pass 0
-    action
+    action [:enable, :mount]
     only_if { origin != node['hostname'] }
   end
 end
