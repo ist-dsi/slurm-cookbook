@@ -16,7 +16,7 @@ node['slurm']['server']['packages'].each(&method(:package))
 munge_dir = ::File.dirname(node['slurm']['munge']['key'])
 slurm_dir = node['slurm']['slurm_dir']
 homes_dir = node['slurm']['homes_dir']
-nfs_subnet = node['slurm']['nfs_network'] | '*'
+nfs_subnet = node['slurm']['nfs_network'] || '*'
 
 # TODO: redesign node generation from attributes
 node_def = ''
