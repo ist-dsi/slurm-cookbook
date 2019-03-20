@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.5.2
+
+### Added
+
+- subnet filtering to exports file, via the `node['slurm']['nfs_network']` attribute
+- `enabled` option to chef `mount` resources
+- proper update to `exportfs`
+
+### Fixed
+
+- slurm.conf newlines and definitions
+- exports file generation
+- slurm variable `apps_dir` deprecated
+
 ## 0.5.1
 
 ### Changed

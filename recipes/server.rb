@@ -14,8 +14,9 @@ node['slurm']['server']['packages'].each(&method(:package))
 # ###########################################################################################
 # TODO: include_recipe 'postfix::default'
 munge_dir = ::File.dirname(node['slurm']['munge']['key'])
-apps_dir = node['slurm']['apps_dir']
+slurm_dir = node['slurm']['slurm_dir']
 homes_dir = node['slurm']['homes_dir']
+nfs_subnet = node['slurm']['nfs_network'] | '*'
 
 # TODO: redesign node generation from attributes
 node_def = ''
@@ -32,13 +33,14 @@ cluster_name = node['slurm']['cluster'].nil? || node['slurm']['cluster']['name']
   threads_per_core = node['slurm']['conf']['nodes'][type]['properties']['threads_per_core']
   weight = node['slurm']['conf']['nodes'][type]['properties']['weight']
   node_def << format("NodeName=#{cluster_name}-#{type}-compute[1-%d] Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
-  partition_def << format("PartitionName=#{type} Nodes=#{cluster_name}-#{type}-compute[1-%d] Default=YES MaxTime=INFINITE State=UP", count)
+  partition_def << format("PartitionName=#{type} Nodes=#{cluster_name}-#{type}-compute[1-%d] Default=YES MaxTime=INFINITE State=UP\n", count)
 end
 
 if !node_def || node['slurm']['monolith_testing']
+  default_control = node['slurm']['monolith_testing'] ? 'YES' : 'NO'
   Chef::Log.warn 'No nodes defined or testing monolith as well'
-  node_def << "NodeName=#{node['hostname']} Procs=#{node['cpu']['cores']} Sockets=#{node['cpu']['cores']} CoresPerSocket=1 ThreadsPerCore=1 RealMemory=#{node['memory']['total'][0..-3].to_i / 1024 / 2} Weight=1"
-  partition_def << format("PartitionName=control Nodes=#{format('%s', node['hostname'])} Default=YES MaxTime=INFINITE State=UP")
+  node_def << "NodeName=#{node['hostname']} Procs=#{node['cpu']['cores']} Sockets=#{node['cpu']['cores']} CoresPerSocket=1 ThreadsPerCore=1 RealMemory=#{node['memory']['total'][0..-3].to_i / 1024 / 2} Weight=1\n"
+  partition_def << format("PartitionName=control Nodes=#{format('%s', node['hostname'])} Default=#{default_control} MaxTime=INFINITE State=UP\n")
 end
 
 template 'Slurm Server config' do
@@ -99,18 +101,23 @@ execute "add cluster #{cluster_name} to accounting" do
 end
 
 # setup NFS
-# nfs tweak
+# TODO: nfs tweak
 # /etc/sysconfig/nfs => RPCNFSDCOUNT=256
 
 # nfs exports config
 template '/etc/exports' do
   source 'exports.erb'
-  variables dirs: [munge_dir, apps_dir, homes_dir]
+  variables(
+    dirs: [munge_dir, slurm_dir, homes_dir],
+    subnet_range: nfs_subnet
+  )
+  notifies :run, 'execute[update exportfs]', :immediately
 end
 
-#     f.close()
-#
-#     subprocess.call(shlex.split("exportfs -a"))
+execute 'update exportfs' do
+  command 'exportfs -a'
+  action :nothing
+end
 
 # ###########################################################################################
 # service activation

@@ -21,28 +21,30 @@ nfs_homes_server = node['slurm']['nfs_homes_server']
 origin = node['slurm']['controller'].nil? ? control_machine : nfs_apps_server
 
 [munge_dir, slurm_dir].each do |dir|
+  next if dir.nil?
   mount dir do
     device "#{origin}:#{dir}"
     fstype 'nfs'
-    options 'rw,sync,hard,intr'
+    enabled true
     dump 0
     pass 0
     action [:enable, :mount]
-    only_if { origin != node['hostname'] }
+    only_if { node['slurm']['control_machine'] != node['hostname'] }
   end
 end
 
 origin = node['slurm']['controller'].nil? ? control_machine : nfs_homes_server
 
-mount homes_dir.to_s do
+mount homes_dir do
   device "#{origin}:#{homes_dir}"
   fstype 'nfs'
-  options 'rw,sync,hard,intr'
+  enabled true
   dump 0
   pass 0
   action [:enable, :mount]
-  only_if { origin != node['hostname'] }
+  only_if { node['slurm']['control_machine'] != node['hostname'] }
 end
+
 # ###########################################################################################
 # service activation
 # ###########################################################################################
