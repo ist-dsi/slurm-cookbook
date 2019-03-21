@@ -18,8 +18,14 @@ homes_dir = node['slurm']['homes_dir']
 control_machine = node['slurm']['control_machine']
 nfs_apps_server = node['slurm']['nfs_apps_server']
 nfs_homes_server = node['slurm']['nfs_homes_server']
-origin = node['slurm']['controller'].nil? ? control_machine : nfs_apps_server
 
+::Chef::Log.info "Slurm Compute #{node['hostname']} Settings:\n
+\tController: #{node['slurm']['control_machine']}\n
+\tNFS Apps: #{node['slurm']['nfs_apps_server']}\n
+\tNFS Homes: #{node['slurm']['nfs_homes_server']}\n
+\tMonolith Testing: #{node['slurm']['monolith_testing']}\n"
+
+origin = control_machine == nfs_apps_server ? control_machine : nfs_apps_server
 [munge_dir, slurm_dir].each do |dir|
   next if dir.nil?
   mount dir do
@@ -29,12 +35,11 @@ origin = node['slurm']['controller'].nil? ? control_machine : nfs_apps_server
     dump 0
     pass 0
     action [:enable, :mount]
-    only_if { node['slurm']['control_machine'] != node['hostname'] }
+    only_if { !node['slurm']['monolith_testing'] && node['slurm']['control_machine'] != node['hostname'] }
   end
 end
 
-origin = node['slurm']['controller'].nil? ? control_machine : nfs_homes_server
-
+origin = control_machine == nfs_homes_server ? control_machine : nfs_homes_server
 mount homes_dir do
   device "#{origin}:#{homes_dir}"
   fstype 'nfs'
@@ -42,7 +47,7 @@ mount homes_dir do
   dump 0
   pass 0
   action [:enable, :mount]
-  only_if { node['slurm']['control_machine'] != node['hostname'] }
+  only_if { !node['slurm']['monolith_testing'] && node['slurm']['control_machine'] != node['hostname'] }
 end
 
 # ###########################################################################################

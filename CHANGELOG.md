@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.5.4
+
+### Added
+
+- Chef logging (info) for compute information on mount stage
+
 ## 0.5.3
 
 ### Fixed
