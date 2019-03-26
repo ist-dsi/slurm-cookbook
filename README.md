@@ -9,10 +9,8 @@ Wrapper cookbook that can prepare a full slurm cluster, controller, compute and 
 
 Requires the following cookbooks:
 
- - mariadb, '~> 2.0.0'
- [1][1]
-
-[1] until [this PR][https://github.com/sous-chefs/mariadb/pull/234] is approved or this version is released in the supermarket, we'll use [this fork][https://github.com/t0rrant/mariadb].
+ - mariadb, '~> 2.0'
+ - shifter, '~> 0.0'
 
 ### Platforms
 
@@ -36,9 +34,7 @@ is at least *17.02* due to hostname behaviour of slurmdbd.
 - Install slurm from static stable sources, i.e 17.11-latest, 18.08-latest
 - Refactor and remove code that can be used as a resource instead of a recipe
 - Remove static types of nodes and partitions and support static generation, maybe by passing the Hash directly 
-- Review cookbook to ensure it respects wrapper cookbook support
 - Complete spec files
-- Require shifter cookbook
 
 ## Usage
 
