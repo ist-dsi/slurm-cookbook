@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.5.6
+
+### Removed
+
+- munge service nfs mount due to user uid mismatch between the controller and the compute nodes
+
 ## 0.5.5
 
 ### Changed
