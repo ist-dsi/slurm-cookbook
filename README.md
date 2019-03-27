@@ -74,15 +74,17 @@ The use case for this run_list is to setup a monolith which contains all of the 
 
 ### slurm::default
 
+- Sets up slurm user and group
 - Installs packages common to all slurms' services.
 
 ### slurm::munge
 
+- Sets up munge user and group
 - Installs and configures munge authentication service.
 
 ### slurm::plugin_shifter
 
-- *TODO* sets up shifter plugin for slurm.
+- Sets up shifter plugin for slurm.
  
 ### slurm::server
 
@@ -121,6 +123,10 @@ default['slurm']['user']                                       # username to con
 
 default['slurm']['group']                                      # group to configure slurm as, usually 'slurm'
 
+default['slurm']['uid']                                        # Slurm user ID, common to all nodes, our default is 999, just before user land id's 
+
+default['slurm']['gid']                                        # Slurm group ID, common to all nodes, our default is 999, just before user land id's
+
 default['proxy']['http']                                       # proxy address for use with apt, mariadb, and system environment
 ```
 ### Munge
@@ -130,6 +136,15 @@ default['slurm']['munge']['key']                               # munge key locat
 default['slurm']['munge']['env_file']                          # munge environment file, to be used by systemd
 
 default['slurm']['munge']['auth_socket']                       # munge communication socket location
+
+default['slurm']['munge']['user']                              # username to configure munge as, usually 'munge'
+
+default['slurm']['munge']['group']                             # group name to configure munge as, usually 'munge'
+
+default['slurm']['munge']['uid']                               # MUNGE user ID, common to all nodes, our default is 998, just before Slurm's
+
+default['slurm']['munge']['gid']                               # MUNGE user ID, common to all nodes, our default is 998, just before Slurm's
+
 ```
 
 ### Monolith

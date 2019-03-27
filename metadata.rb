@@ -11,7 +11,7 @@ source_url 'https://github.com/ist-dsi/slurm-cookbook'
 description 'Installs/Configures slurm workload manager'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-version '0.5.6'
+version '0.6.0'
 chef_version '~> 14.0'
 
 supports 'ubuntu', '> 16.0'

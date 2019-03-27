@@ -3,6 +3,25 @@ class ::Chef::Recipe
 end
 
 # ###########################################################################################
+# user preparation
+# ###########################################################################################
+
+group node['slurm']['munge']['group'] do
+  gid node['slurm']['munge']['gid']
+  system true
+  action :create
+end
+
+user node['slurm']['munge']['user'] do
+  comment node['slurm']['munge']['comment']
+  uid node['slurm']['munge']['uid']
+  gid node['slurm']['munge']['gid']
+  manage_home false
+  system true
+  action :create
+end
+
+# ###########################################################################################
 # package and service configuration
 # ###########################################################################################
 

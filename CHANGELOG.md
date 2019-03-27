@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.6.0
+
+### Added
+
+- MUNGE user and group with pre-established uid and gid 
+- SLURM user and group with pre-established uid and gid
+- Updated documentation
+
 ## 0.5.6
 
 ### Removed
@@ -169,4 +177,3 @@ Initial release.
 - created a modified version of openstack-common get_password library
 - created test data bag skeleton and changed usual location for them, as well as the data bag secret
 - created some attributes, the data structure's structure is still not set in stone
-
