@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 0.6.1
+
+### Changed
+
+- Slurm and munge users are now regular user so that we can force the uid and gid values
+
+### Added
+
+- home directory for both slurm and munge users
+
 ## 0.6.0
 
 ### Added

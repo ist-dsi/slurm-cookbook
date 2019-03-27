@@ -8,7 +8,6 @@ end
 
 group node['slurm']['munge']['group'] do
   gid node['slurm']['munge']['gid']
-  system true
   action :create
 end
 
@@ -16,8 +15,9 @@ user node['slurm']['munge']['user'] do
   comment node['slurm']['munge']['comment']
   uid node['slurm']['munge']['uid']
   gid node['slurm']['munge']['gid']
+  home node['slurm']['munge']['home_dir']
   manage_home false
-  system true
+  shell '/sbin/nologin'
   action :create
 end
 
