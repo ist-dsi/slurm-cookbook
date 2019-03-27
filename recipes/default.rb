@@ -12,8 +12,8 @@ user node['slurm']['user'] do
   uid node['slurm']['uid']
   gid node['slurm']['gid']
   manage_home false
-  home "/var/lib/slurm"
-  shell "/bin/bash"
+  home '/var/lib/slurm'
+  shell '/bin/bash'
   action :create
 end
 
