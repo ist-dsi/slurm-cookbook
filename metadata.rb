@@ -14,8 +14,8 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '1.0.0'
 chef_version '~> 14.0'
 
-supports 'ubuntu', '> 16.0'
-supports 'debian', '> 8.0'
+supports 'ubuntu', '> 18.0'
+supports 'debian', '> 9.0'
 
 depends 'mariadb', '~> 2.0'
 depends 'shifter', '~> 1.0'
