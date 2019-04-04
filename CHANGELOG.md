@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.0.2
+
+### Changed
+
+- control machine address should be just the hostname, the name resolution is assumed to be solved locally in each node
+
 ## 1.0.1
 
 ### Removed

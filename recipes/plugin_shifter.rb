@@ -14,7 +14,7 @@ if !node['slurm']['shifter'].nil? && node['slurm']['shifter'].eql?(true)
     only_if 'which shifter'
   end
 
-  if node['slurm']['control_machine'] == node['fqdn']
+  if node['slurm']['control_machine'] == node['hostname']
     shifter_install_imagegw 'Install Shifter Runtime and make its binary available' do
       action :install
     end
