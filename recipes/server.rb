@@ -128,7 +128,7 @@ service 'NFS Kernel Service' do
   supports restart: true, status: true
   restart_command "systemctl restart #{service_name}"
   status_command "systemctl status #{service_name}"
-  action [enable, :start]
+  action [:enable, :start]
 end
 
 service 'Slurm Server Service' do
@@ -137,5 +137,5 @@ service 'Slurm Server Service' do
   reload_command " /etc/init.d/#{service_name} reconfig"
   restart_command "systemctl restart #{service_name}"
   status_command "systemctl status #{service_name}"
-  action [enable, :start]
+  action [:enable, :start]
 end

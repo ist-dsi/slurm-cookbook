@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.0.4
+
+### Fixed
+
+- chef `service` resource action
+
 ## 1.0.3
 
 ### Added
