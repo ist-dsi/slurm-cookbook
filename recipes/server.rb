@@ -111,12 +111,6 @@ template '/etc/exports' do
     dirs: [munge_dir, slurm_dir, homes_dir],
     subnet_range: nfs_subnet
   )
-  notifies :run, 'execute[update exportfs]', :immediately
-end
-
-execute 'update exportfs' do
-  command 'exportfs -a'
-  action :nothing
 end
 
 # ###########################################################################################
