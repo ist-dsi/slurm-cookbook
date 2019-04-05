@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.0.3
+
+### Added
+
+- NFS Kernel service explicit start, it is a bad practice to expect services to be running after the respective packages are installed
+
 ## 1.0.2
 
 ### Changed

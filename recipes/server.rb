@@ -123,11 +123,19 @@ end
 # service activation
 # ###########################################################################################
 
+service 'NFS Kernel Service' do
+  service_name 'nfs-kernel-server'
+  supports restart: true, status: true
+  restart_command "systemctl restart #{service_name}"
+  status_command "systemctl status #{service_name}"
+  action [enable, :start]
+end
+
 service 'Slurm Server Service' do
   service_name 'slurmctld'
   supports restart: true, reload: true, status: true
   reload_command " /etc/init.d/#{service_name} reconfig"
   restart_command "systemctl restart #{service_name}"
   status_command "systemctl status #{service_name}"
-  action :start
+  action [enable, :start]
 end
