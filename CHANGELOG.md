@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 This file is used to list changes made in each version of the slurm cookbook.
-## Unreleased
+
+## 1.0.5
 
 ### Added
 
@@ -13,6 +14,7 @@ This file is used to list changes made in each version of the slurm cookbook.
 ### Changed
 
 - compute verifications to more friendly boolean expressions
+- reordered resource notifications
 
 ## 1.0.4
 
