@@ -111,6 +111,7 @@ template '/etc/exports' do
     dirs: [munge_dir, slurm_dir, homes_dir],
     subnet_range: nfs_subnet
   )
+  not_if { node['slurm']['monolith_testing'] }
 end
 
 # ###########################################################################################
@@ -123,6 +124,7 @@ service 'NFS Kernel Service' do
   restart_command "systemctl restart #{service_name}"
   status_command "systemctl status #{service_name}"
   action [:enable, :start]
+  not_if { node['slurm']['monolith_testing'] }
 end
 
 service 'Slurm Server Service' do

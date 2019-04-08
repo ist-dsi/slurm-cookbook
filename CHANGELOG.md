@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 This file is used to list changes made in each version of the slurm cookbook.
+## Unreleased
+
+### Added
+
+- Edge case to not export nfs shares if testing monolith, there seem to be some issues with nfs exports when using dokken
+
+### Changed
+
+- compute verifications to more friendly boolean expressions
 
 ## 1.0.4
 

@@ -32,7 +32,7 @@ mount slurm_dir do
   dump 0
   pass 0
   action [:enable, :mount]
-  only_if { !node['slurm']['monolith_testing'] && node['slurm']['control_machine'] != node['hostname'] }
+  not_if { node['slurm']['monolith_testing'] && origin == node['hostname'] }
 end
 
 origin = control_machine == nfs_homes_server ? control_machine : nfs_homes_server
@@ -43,7 +43,7 @@ mount homes_dir do
   dump 0
   pass 0
   action [:enable, :mount]
-  only_if { !node['slurm']['monolith_testing'] && node['slurm']['control_machine'] != node['hostname'] }
+  not_if { node['slurm']['monolith_testing'] && origin == node['hostname'] }
 end
 
 # ###########################################################################################
