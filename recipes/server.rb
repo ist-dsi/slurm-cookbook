@@ -57,7 +57,6 @@ end
 template 'Slurm Server systemd unit file' do
   path node['slurm']['server']['systemd_file']
   source 'slurmctld_service.erb'
-  notifies :stop, 'service[Slurm Server Service]', :before
   notifies :run, 'execute[Systemd Daemon Reload]', :immediately
 end
 
@@ -97,7 +96,6 @@ execute "add cluster #{cluster_name} to accounting" do
   command "/usr/bin/sacctmgr -i add cluster #{cluster_name}"
   action :run
   not_if "/usr/bin/sacctmgr -n list cluster #{cluster_name} | grep #{cluster_name}"
-  notifies :start, 'service[Slurm Server Service]', :delayed
 end
 
 # setup NFS
@@ -111,6 +109,7 @@ template '/etc/exports' do
     dirs: [munge_dir, slurm_dir, homes_dir],
     subnet_range: nfs_subnet
   )
+  notifies :restart, 'service[NFS Kernel Service]', :immediately
   not_if { node['slurm']['monolith_testing'] }
 end
 
