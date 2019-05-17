@@ -56,7 +56,7 @@ service 'Munge Authentication Service' do
 end
 
 execute "this is a really dumb way of debugging a service" do
-  command "journalctl -xe"
+  command "cat /lib/systemd/system/munge.service"
   live_stream true
   action :run
   not_if "/bin/systemd status munge"
