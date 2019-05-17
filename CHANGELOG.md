@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.1.0
+
+### Fixed
+
+- slurm.conf node list appeared [1-1] when the type count was 1, still worked but not very appealing
+- slurm.conf node list appeared [1-0] when the type count was 1, which made the slurmctld service not start
+
 ## 1.0.6
 
 ### Added
