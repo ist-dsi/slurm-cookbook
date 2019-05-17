@@ -22,6 +22,7 @@ env:
     - CHEF_LICENSE="accept-no-persist"
   matrix:
     - INSTANCE=debian-9
+    - INSTANCE=debian-9
 #    - INSTANCE=ubuntu-1804
 
 
