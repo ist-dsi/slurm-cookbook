@@ -18,6 +18,7 @@ user node['slurm']['munge']['user'] do
   home node['slurm']['munge']['home_dir']
   manage_home false
   shell '/sbin/nologin'
+  system true
   action :create
 end
 
