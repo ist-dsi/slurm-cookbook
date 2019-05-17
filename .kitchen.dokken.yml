@@ -7,7 +7,9 @@ transport:
 
 provisioner:
   name: dokken
-  chef_license: accept-no-persist
+  client_rb:
+    diff_disabled: true
+    chef_license: accept-no-persist
   deprecations_as_errors: false
 
 platforms:
