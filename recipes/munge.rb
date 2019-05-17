@@ -54,11 +54,9 @@ service 'Munge Authentication Service' do
   ignore_failure true
 end
 
-bash "this is a really dumb way of debugging a service" do
-  code <<-EOH
-    journalctl -xe 
-    cat /etc/default/munge
-    EOH
+execute "this is a really dumb way of debugging a service" do
+  command "journalctl -xe"
+  live_stream true
   action :run
   not_if "/bin/systemd status munge"
 end
