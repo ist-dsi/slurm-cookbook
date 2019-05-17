@@ -47,15 +47,21 @@ end
 # ###########################################################################################
 service 'Munge Authentication Service' do
   service_name 'munge'
-  retries 3
-  retry_delay 2
+  #retries 3
+  #retry_delay 2
   sensitive true
   action :nothing
   ignore_failure true
 end
 
-execute "this is a really dumb way of debugging a service" do
-  command "journalctl -xe munge && echo -en '\n\n\n' && cat #{node['slurm']['munge']['env_file']} && echo -en '\n\n\n' && grep munge /var/log/syslog"
+bash "this is a really dumb way of debugging a service" do
+  code <<-EOH
+    journalctl -xe munge
+    echo -en '\n\n\n'
+    cat /etc/default/munge
+    echo -en '\n\n\n'
+    grep munge /var/log/syslog
+    EOH
   action :run
   not_if "/bin/systemd status munge"
 end
