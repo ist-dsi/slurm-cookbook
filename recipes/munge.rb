@@ -51,4 +51,11 @@ service 'Munge Authentication Service' do
   retry_delay 2
   sensitive true
   action :nothing
+  ignore_failure true
+end
+
+execute "this is a really dumb way of debugging a service" do
+  command "journalctl -xe munge && echo -en '\n\n\n' && cat #{node['slurm']['munge']['env_file']} && echo -en '\n\n\n' && grep munge /var/log/syslog"
+  action :run
+  not_if "/bin/systemd status munge"
 end
