@@ -33,11 +33,11 @@ cluster_name = node['slurm']['cluster'].nil? || node['slurm']['cluster']['name']
   threads_per_core = node['slurm']['conf']['nodes'][type]['properties']['threads_per_core']
   weight = node['slurm']['conf']['nodes'][type]['properties']['weight']
 
-  if count == 1
-    node_def << format("NodeName=#{cluster_name}-#{type}-compute%d Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
-  else
-   node_def << format("NodeName=#{cluster_name}-#{type}-compute[1-%d] Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
-  end
+  node_def << if count == 1
+                format("NodeName=#{cluster_name}-#{type}-compute%d Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
+              else
+                format("NodeName=#{cluster_name}-#{type}-compute[1-%d] Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
+              end
 
   partition_def << format("PartitionName=#{type} Nodes=#{cluster_name}-#{type}-compute[1-%d] Default=YES MaxTime=INFINITE State=UP\n", count)
 end
