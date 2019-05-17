@@ -7,6 +7,10 @@ This file is used to list changes made in each version of the slurm cookbook.
 
 ## 1.1.0
 
+### Removed
+
+- support for Ubuntu 18.04, see [Known Issues](#known-issues)
+
 ### Fixed
 
 - slurm.conf node list appeared [1-1] when the type count was 1, still worked but not very appealing
@@ -247,3 +251,29 @@ Initial release.
 - created a modified version of openstack-common get_password library
 - created test data bag skeleton and changed usual location for them, as well as the data bag secret
 - created some attributes, the data structure's structure is still not set in stone
+
+
+## Known Issues
+
+### 1.1.0
+
+- when running in travis, Ubuntu 18.04 vms do not start the munge service:
+
+  ```bash
+  dokken systemd[1]: Starting MUNGE authentication service...
+  -- Subject: Unit munge.service has begun start-up
+  -- Defined-By: systemd
+  -- Support: http://www.ubuntu.com/support
+  -- 
+  -- Unit munge.service has begun starting up.
+  dokken systemd[1]: munge.service: New main PID 3335 does not belong to service, and PID file is not owned by root. Refusing.
+  dokken systemd[1]: munge.service: New main PID 3335 does not belong to service, and PID file is not owned by root. Refusing.
+  dokken systemd[1]: munge.service: Start operation timed out. Terminating.
+  dokken systemd[1]: munge.service: Failed with result 'timeout'.
+  dokken systemd[1]: Failed to start MUNGE authentication service.
+  ```
+  
+  the user is created properly, has the right `uid` and `guid`, the systemd unit file is executing with user defined by name.
+  When running locally, with docker, vagrant or launching on openstack it runs fine...
+  
+  Besides, the Debian 9 run in travis runs just fine. A mystery...

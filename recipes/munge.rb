@@ -48,16 +48,8 @@ end
 # ###########################################################################################
 service 'Munge Authentication Service' do
   service_name 'munge'
-  #retries 3
-  #retry_delay 2
+  retries 3
+  retry_delay 2
   sensitive true
   action :nothing
-  ignore_failure true
-end
-
-execute "this is a really dumb way of debugging a service" do
-  command "id munge"
-  live_stream true
-  action :run
-  not_if "/bin/systemd status munge"
 end
