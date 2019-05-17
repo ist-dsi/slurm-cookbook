@@ -24,7 +24,7 @@ partition_def = ''
 cluster_name = node['slurm']['cluster'].nil? || node['slurm']['cluster']['name'].nil? ? 'slurm-test' : node['slurm']['cluster']['name']
 
 %w(small medium large).each do |type|
-  next if node['slurm']['conf']['nodes'].nil? || node['slurm']['conf']['nodes'][type].nil?
+  next if node['slurm']['conf']['nodes'].nil? || node['slurm']['conf']['nodes'][type].nil? || node['slurm']['conf']['nodes'][type]['count'] != 0
   count = node['slurm']['conf']['nodes'][type]['count']
   cpus = node['slurm']['conf']['nodes'][type]['properties']['cpus']
   mem = node['slurm']['conf']['nodes'][type]['properties']['mem']
@@ -32,7 +32,13 @@ cluster_name = node['slurm']['cluster'].nil? || node['slurm']['cluster']['name']
   cores_per_socket = node['slurm']['conf']['nodes'][type]['properties']['cores_per_socket']
   threads_per_core = node['slurm']['conf']['nodes'][type]['properties']['threads_per_core']
   weight = node['slurm']['conf']['nodes'][type]['properties']['weight']
-  node_def << format("NodeName=#{cluster_name}-#{type}-compute[1-%d] Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
+
+  if count == 1
+    node_def << format("NodeName=#{cluster_name}-#{type}-compute%d Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
+  else
+   node_def << format("NodeName=#{cluster_name}-#{type}-compute[1-%d] Procs=#{cpus} Sockets=#{sockets} CoresPerSocket=#{cores_per_socket} ThreadsPerCore=#{threads_per_core} RealMemory=#{mem} Weight=#{weight}\n", count)
+  end
+
   partition_def << format("PartitionName=#{type} Nodes=#{cluster_name}-#{type}-compute[1-%d] Default=YES MaxTime=INFINITE State=UP\n", count)
 end
 
