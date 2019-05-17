@@ -8,6 +8,7 @@ transport:
 
 provisioner:
   name: dokken
+  chef_license: accept
   deprecations_as_errors: false
 
 platforms:
