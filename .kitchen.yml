@@ -21,12 +21,12 @@ verifier:
   chef_license: accept-no-persist
 
 platforms:
-#  - name: ubuntu-1804
-#    driver:
-#      box: bento/ubuntu-18.04
   - name: debian-9
     driver:
       box: bento/debian-9.0
+#  - name: ubuntu-1804
+#    driver:
+#      box: bento/ubuntu-18.04
 
 suites:
   - name: monolith
