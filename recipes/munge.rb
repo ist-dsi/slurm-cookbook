@@ -56,11 +56,8 @@ end
 
 bash "this is a really dumb way of debugging a service" do
   code <<-EOH
-    journalctl -xe munge
-    echo -en '\n\n\n'
+    journalctl -xe 
     cat /etc/default/munge
-    echo -en '\n\n\n'
-    grep munge /var/log/syslog
     EOH
   action :run
   not_if "/bin/systemd status munge"
