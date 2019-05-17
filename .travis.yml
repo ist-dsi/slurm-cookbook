@@ -15,6 +15,8 @@ branches:
 services: docker
 
 env:
+  global:
+    - CHEF_LICENSE=accept-no-persist
   matrix:
     - INSTANCE=ubuntu-1804
     - INSTANCE=debian-9
@@ -25,7 +27,6 @@ before_script:
   - chef --version
   - cookstyle --version
   - foodcritic --version
-  - echo "chef_license 'accept'" >> ~/.chef/knife.rb
 
 script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 
