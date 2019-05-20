@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/ist-dsi/slurm-cookbook.svg?branch=master)](https://travis-ci.org/ist-dsi/slurm-cookbook)
-[![Cookbook Version](https://img.shields.io/cookbook/v/slurm.svg)](https://supermarket.chef.io/cookbooks/slurm)
+[![Cookbook Version](https://img.shields.io/cookbook/v/slurm.svg?label=latest-version)](https://supermarket.chef.io/cookbooks/slurm)
 
 # slurm
 
@@ -9,8 +9,8 @@ Wrapper cookbook that can prepare a full slurm cluster, controller, compute and 
 
 Requires the following cookbooks:
 
- - mariadb, '~> 2.0'
- - shifter, '~> 0.0'
+ - mariadb [![Cookbook Version](https://img.shields.io/cookbook/v/mariadb.svg?label=latest-version)](https://supermarket.chef.io/cookbooks/mariadb)
+ - shifter [![Cookbook Version](https://img.shields.io/cookbook/v/shifter.svg?label=latest-version)](https://supermarket.chef.io/cookbooks/shifter)
 
 ### Platforms
 

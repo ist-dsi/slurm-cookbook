@@ -24,7 +24,7 @@ partition_def = ''
 cluster_name = node['slurm']['cluster'].nil? || node['slurm']['cluster']['name'].nil? ? 'slurm-test' : node['slurm']['cluster']['name']
 
 %w(small medium large).each do |type|
-  next if node['slurm']['conf']['nodes'].nil? || node['slurm']['conf']['nodes'][type].nil? || node['slurm']['conf']['nodes'][type]['count'] != 0
+  next if node['slurm']['conf']['nodes'].nil? || node['slurm']['conf']['nodes'][type].nil? || node['slurm']['conf']['nodes'][type]['count'] == 0
   count = node['slurm']['conf']['nodes'][type]['count']
   cpus = node['slurm']['conf']['nodes'][type]['properties']['cpus']
   mem = node['slurm']['conf']['nodes'][type]['properties']['mem']
