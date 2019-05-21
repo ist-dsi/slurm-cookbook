@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.2.1
+
+### Changed
+
+- how we decide if the image manager is installed. It is now via an attribute 
+
 ## 1.1.2
 
 ### Fixed

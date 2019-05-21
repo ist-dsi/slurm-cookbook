@@ -239,6 +239,10 @@ default['slurm']['server']['cgroup_conf_file']                 # path to the cgr
 default['slurm']['server']['plugstack_dir']                    # path to the slurm plugin directory, defaults to '/etc/slurm-llnl/plugstack.conf.d'
 
 default['slurm']['server']['plugstack_conf_file']              # path to the slurm plugin configuration file, defaults to '/etc/slurm-llnl/plugstack.conf'
+
+default['slurm']['shifter']                                    # Boolean, if true shifter will be installed
+
+default['shifter']['imagegw']                                  # Boolean, if true the shifter image gateway will be installed and configured (assumes default['slurm']['shifter'] == true
 ```
 
 
