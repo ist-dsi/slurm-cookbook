@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.1.2
+
+### Fixed
+
+- count can now be a String, an integer or some type that can be converted to an integer
+
 ## 1.1.1
 
 ### Fixed
