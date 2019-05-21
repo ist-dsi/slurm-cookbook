@@ -15,7 +15,7 @@ if !node['slurm']['shifter'].nil? && node['slurm']['shifter'].eql?(true)
     only_if 'which shifter'
   end
 
-  if node['shifter'] && node['shifter']['imagegw'].eql?(true)
+  if !node['shifter'].nil? && node['shifter']['imagegw'].eql?(true)
     shifter_install_imagegw 'Install Shifter Runtime and make its binary available' do
       with_slurm true
       action :install

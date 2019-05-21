@@ -5,11 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.2.3
+
+### Changed
+
+- ruby code to match a non-empty attribute
+
 ## 1.2.2
 
-### Fixed
+### Changed
 
-- Small fix
+- ruby code to match a Boolean
 
 ## 1.2.1
 
