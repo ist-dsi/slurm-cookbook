@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.2.4
+
+### Fixed
+
+- `node['shifter']` being hardcoded and overwritten the attribute set by wrapper cookbooks
+
 ## 1.2.3
 
 ### Changed

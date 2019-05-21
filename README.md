@@ -243,6 +243,8 @@ default['slurm']['server']['plugstack_conf_file']              # path to the slu
 default['slurm']['shifter']                                    # Boolean, if true shifter will be installed
 
 default['shifter']['imagegw']                                  # Boolean, if true the shifter image gateway will be installed and configured (assumes default['slurm']['shifter'] == true
+
+default['shifter']['imagegw_fqdn']                             # String, Image Gateway FQDN, accessible hostname or ip address, defaults node['slurm']['control_machine']
 ```
 
 
