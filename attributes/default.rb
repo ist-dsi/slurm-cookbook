@@ -89,3 +89,5 @@ default['slurm']['custom_template_banner'] = "
 default['slurm']['user'] = default['slurm']['group'] = 'slurm'
 default['slurm']['uid'] = default['slurm']['gid'] = 999
 default['slurm']['comment'] = 'Slurm Workload Manager'
+
+default['slurm']['cluster']['name'] = 'slurm-test'

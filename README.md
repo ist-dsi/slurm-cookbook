@@ -219,6 +219,8 @@ take into account that when overriding `['slurm']['accounting']['conf']` you wil
 
 ### Server
 ```
+default['slurm']['cluster']['name']                            # Name for the cluster, defaults to 'slurm-test'
+
 default['slurm']['server']['conf_file']                        # path to the slurmctld and slurmd configuration file, defaults to '/etc/slurm-llnl/slurm.conf'
 
 default['slurm']['server']['env_file']                         # path to the slurmctld environment file, defaults to '/etc/default/slurmctld'
