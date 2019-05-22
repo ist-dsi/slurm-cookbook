@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.3.3
+
+### Fixed
+
+- documentation formatting
+
 ## 1.3.2
 
 ### Fixed

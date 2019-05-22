@@ -264,6 +264,7 @@ For now we assume three types of partitions (and nodes):
 representing the capacity (memory) for each group. The nodes in each group are assumed to be homogeneous. 
 
 Each group properties can be passed via the following attributes
+
 ```
 default['slurm']['conf']['nodes'][type]['count']                              
 default['slurm']['conf']['nodes'][type]['properties']['cpus']               # amount of CPUs available in the node group, Integer
