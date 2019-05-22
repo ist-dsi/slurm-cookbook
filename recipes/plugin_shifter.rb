@@ -2,6 +2,7 @@ if !node['slurm']['shifter'].nil? && node['slurm']['shifter'].eql?(true)
   if !node['shifter'].nil? && node['shifter']['imagegw'].eql?(true)
     shifter_install_imagegw 'Install Shifter Runtime and make its binary available' do
       with_slurm true
+      system_name node['slurm']['cluster']['name']
       action :install
     end
   end
@@ -11,8 +12,9 @@ if !node['slurm']['shifter'].nil? && node['slurm']['shifter'].eql?(true)
 
   shifter_install 'Install Shifter Runtime and make its binary available' do
     action :install
-    imagegw_fqdn node['slurm']['control_machine']
     with_slurm true
+    system_name node['slurm']['cluster']['name']
+    imagegw_fqdn node['slurm']['control_machine']
   end
 
   template 'Shifter plugin for SLURM' do
