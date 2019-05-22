@@ -195,6 +195,7 @@ default['slurm']['accounting']['conf']                         # Hash representi
 ```
 
 The default for `['slurm']['accounting']['conf']` is:
+
 ```
 {
   AuthType: 'auth/munge',
