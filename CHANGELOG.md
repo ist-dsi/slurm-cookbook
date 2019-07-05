@@ -7,6 +7,10 @@ This file is used to list changes made in each version of the slurm cookbook.
 
 ## 1.4.0
 
+### Fixed
+
+- issue with missing apt key for mariadb (temporary hotfix)
+
 ### Changed
 
 - `slurm` user gid to 998, `systemd-coredump` has 999 in debian buster
