@@ -23,6 +23,7 @@ mariadb_repository 'mariadb repo' do
   version node['mysql']['version']
   apt_repository node['mysql']['apt_repository']
   apt_key_proxy proxy
+  apt_gpg_key 'F1656F24C74CD1D8' if node['platform_version'] > 9 # ugly workaround for issues with debian buster in travis
 end
 
 # this should be redundant but I seems neither mariadb_repository or package resource call apt_update
