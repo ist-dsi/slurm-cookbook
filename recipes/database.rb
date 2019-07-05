@@ -16,6 +16,11 @@ if platform_family?('debian')
   apt_update 'update before repo' do
     action :update
   end
+  ::Chef::Log.info "Debugging attributes:\n
+                   \tPlatform: #{node['platform']}\n
+                   \tVersion: #{node['platform_version']}\n
+                   \tFamily: #{node['platform_family']}\n
+                   \tLSB codename: #{node['lsb']['codename']}\n"
 end
 
 proxy = (node['proxy'].nil? || node['proxy']['http'].nil?) ? false : node['proxy']['http'] # see https://github.com/chef/cookstyle/issues/43
@@ -23,7 +28,7 @@ mariadb_repository 'mariadb repo' do
   version node['mysql']['version']
   apt_repository node['mysql']['apt_repository']
   apt_key_proxy proxy
-  apt_gpg_key 'F1656F24C74CD1D8' if node['platform_version'] > 9 # ugly workaround for issues with debian buster in travis
+  apt_gpg_key 'F1656F24C74CD1D8' if node['platform_version'].split('.')[0].to_i >= 9 # ugly workaround for issues with debian buster in travis
 end
 
 # this should be redundant but I seems neither mariadb_repository or package resource call apt_update
