@@ -10,6 +10,7 @@ This file is used to list changes made in each version of the slurm cookbook.
 ### Changed
 
 - `slurm` user gid to 998, `systemd-coredump` has 999 in debian buster
+- `mariadb` version to current stable (10.4)
 
 ## 1.3.3
 
