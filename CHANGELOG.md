@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.4.0
+
+### Changed
+
+- `slurm` user gid to 998, `systemd-coredump` has 999 in debian buster
+
 ## 1.3.3
 
 ### Fixed
