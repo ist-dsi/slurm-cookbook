@@ -19,11 +19,9 @@ services: docker
 
 env:
   global:
-  - CHEF_LICENSE="accept-no-persist"
+    - CHEF_LICENSE="accept-no-persist"
   matrix:
-  - INSTANCE=debian-9
-
-
+    - INSTANCE=debian-9
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
@@ -34,7 +32,7 @@ before_script:
 
 script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 
-matrix:
+jobs:
   include:
     - script:
         - chef exec delivery local all
