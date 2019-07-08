@@ -17,9 +17,13 @@ if platform_family?('debian')
     action :update
   end
 
-  bash 'ugly workarounds' do
-    cwd '/'
-    code 'apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8'
+  # TODO: remove this after confirmation that the key is added properly in the CI/CD pipeline (check debian buster)
+  bash 'HOTFIX make sure we have F1656F24C74CD1D8 key HOTFIX' do
+    cwd '/tmp'
+    code <<-EOH
+      gpg --keyserver keyserver.ubuntu.com --recv-keys F1656F24C74CD1D8
+      gpg -a --export F1656F24C74CD1D8 | apt-key add -
+    EOH
   end
 
   ::Chef::Log.info "Debugging attributes:\n

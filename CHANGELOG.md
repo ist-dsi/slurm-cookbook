@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.4.1
+
+### Fixed
+
+- issue with apt-key add not allowing to parse output
+
 ## 1.4.0
 
 ### Fixed
