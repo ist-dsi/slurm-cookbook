@@ -19,10 +19,10 @@ services: docker
 
 env:
   global:
-    - CHEF_LICENSE="accept-no-persist"
+  - CHEF_LICENSE="accept-no-persist"
   matrix:
-    - INSTANCE=debian-9
-#    - INSTANCE=ubuntu-1804
+  - INSTANCE=debian-9
+
 
 
 before_script:
