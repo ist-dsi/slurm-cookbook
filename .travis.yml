@@ -30,7 +30,9 @@ before_script:
   - cookstyle --version
   - foodcritic --version
 
-
+cache:
+  directories:
+    - .kitchen
 
 matrix:
   include:
