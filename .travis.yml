@@ -21,7 +21,7 @@ env:
   global:
     - CHEF_LICENSE="accept-no-persist"
   matrix:
-    - INSTANCE=debian-9
+    - INSTANCE=ubuntu-1804
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
