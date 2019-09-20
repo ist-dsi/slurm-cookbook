@@ -248,6 +248,8 @@ default['slurm']['shifter']                                    # Boolean, if tru
 default['shifter']['imagegw']                                  # Boolean, if true the shifter image gateway will be installed and configured (assumes default['slurm']['shifter'] == true
 
 default['shifter']['imagegw_fqdn']                             # String, Image Gateway FQDN, accessible hostname or ip address, defaults node['slurm']['control_machine']
+
+default['shifter']['siteenv_append']                           # String, Environment Variable Append control, defaults to 'PATH=/opt/udiImage/bin'
 ```
 
 

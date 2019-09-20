@@ -11,8 +11,8 @@ source_url 'https://github.com/ist-dsi/slurm-cookbook'
 description 'Installs/Configures slurm workload manager'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-version '1.4.2'
-chef_version '~> 14.0'
+version '1.5.0'
+chef_version '>= 14.0'
 
 supports 'debian', '>= 9.0'
 

@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## 1.5.0
+
+### Added
+
+- support for `siteEnvAppend` setting in shifter
+
 ## 1.4.2
 
 ### Removed
@@ -360,3 +366,4 @@ Initial release.
   When running locally, with docker, vagrant or launching on openstack it runs fine...
   
   Besides, the Debian 9 run in travis runs just fine. A mystery...
+ 
