@@ -57,13 +57,14 @@ template 'Slurm Server config' do
   mode '644'
   variables(node_def: node_def,
             partition_def: partition_def)
-  notifies :start, 'service[Slurm Server Service]', :delayed
+  notifies :stop, 'service[Slurm Server Service]', :before
 end
 
 template 'Slurm Server systemd unit file' do
   path node['slurm']['server']['systemd_file']
   source 'slurmctld_service.erb'
   notifies :run, 'execute[Systemd Daemon Reload]', :immediately
+  notifies :start, 'service[Slurm Server Service]', :immediately
 end
 
 directory 'Slurm Server cgroup directory' do
@@ -79,7 +80,7 @@ template 'Slurm Server cgroup config' do
   owner node['slurm']['user']
   group node['slurm']['group']
   mode '644'
-  notifies :restart, 'service[Slurm Server Service]', :delayed
+  notifies :restart, 'service[Slurm Server Service]', :immediately
 end
 
 directory 'Slurm Server plugstack directory' do
@@ -95,7 +96,7 @@ template 'Slurm Server plugstack config' do
   owner node['slurm']['user']
   group node['slurm']['group']
   mode '644'
-  notifies :restart, 'service[Slurm Server Service]', :delayed
+  notifies :restart, 'service[Slurm Server Service]', :immediately
 end
 
 execute "add cluster #{cluster_name} to accounting" do

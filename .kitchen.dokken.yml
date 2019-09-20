@@ -14,9 +14,9 @@ provisioner:
   deprecations_as_errors: false
 
 platforms:
-  - name: debian-9
+  - name: ubuntu-1804
     driver:
-      image: dokken/debian-9
+      image: dokken/ubuntu-18.04
       pid_one_command: /bin/systemd
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
@@ -24,5 +24,5 @@ platforms:
       slurm:
         conf:
           conf:
-            ProctrackType: 'proctrack/pgid'
+            ProctrackType: 'proctrack/linuxproc'
             TaskPlugin: 'task/none'

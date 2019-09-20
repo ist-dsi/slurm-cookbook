@@ -27,9 +27,9 @@ platforms:
   - name: debian-10
     driver:
       box: bento/debian-10.0
-#  - name: ubuntu-1804
-#    driver:
-#      box: bento/ubuntu-18.04
+  - name: ubuntu-1804
+    driver:
+      box: bento/ubuntu-18.04
 
 suites:
   - name: monolith

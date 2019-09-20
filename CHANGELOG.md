@@ -11,6 +11,10 @@ This file is used to list changes made in each version of the slurm cookbook.
 
 - support for `siteEnvAppend` setting in shifter
 
+### Changed
+
+- service state ordering
+
 ## 1.4.2
 
 ### Removed
@@ -343,6 +347,11 @@ Initial release.
 
 
 ## Known Issues
+
+### 1.5.0
+
+- when running in debian systems and docker vms fail to communicate with the database and/or the munge service.
+  Debugging this does not seem trivial.
 
 ### 1.1.0
 
