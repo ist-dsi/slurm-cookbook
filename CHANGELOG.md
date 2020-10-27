@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 This file is used to list changes made in each version of the slurm cookbook.
 
+## [unreleased]
+
+## 1.5.1
+### Fixed
+
+- Chef 15 cookstyle
+- slurm user creation
+
 ## 1.5.0
 
 ### Added
