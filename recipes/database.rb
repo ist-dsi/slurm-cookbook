@@ -5,7 +5,7 @@ end
 # ###########################################################################################
 # secret definition
 # ###########################################################################################
-db_root_pass = node.normal['mariadb']['server_root_password'] = get_password 'db', 'mysqlroot'
+db_root_pass = node.force_default['mariadb']['server_root_password'] = get_password 'db', 'mysqlroot'
 
 # ###########################################################################################
 # package installation

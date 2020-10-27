@@ -1,7 +1,6 @@
 if !node['proxy'].nil? && !node['proxy']['http'].nil?
   # workaround for some apt commands that may be executed directly during recipe execution but outside of chef's env
-  case node['platform_family']
-  when 'debian'
+  if platform_family?('debian')
     file '/etc/apt/apt.conf' do
       owner 'root'
       group'root'

@@ -15,6 +15,7 @@ user node['slurm']['user'] do
   home '/var/lib/slurm'
   shell '/bin/bash'
   action :create
+  not_if 'getent passwd newuser'
 end
 
 # ###########################################################################################

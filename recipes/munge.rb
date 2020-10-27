@@ -26,7 +26,7 @@ end
 # package and service configuration
 # ###########################################################################################
 
-'epel-release'.method(:package) if node['platform_family'] == 'rhel'
+'epel-release'.method(:package) if platform_family?('rhel')
 
 package 'munge'
 
